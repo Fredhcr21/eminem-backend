@@ -11,7 +11,7 @@ COPY . .
 
 FROM dependencies AS build
 RUN npm run build
-RUN cp -R dist /tmp/prod_dist
+RUN cp -R build /tmp/prod_dist
 
 FROM base AS release
 COPY --from=dependencies /tmp/prod_node_modules ./node_modules
