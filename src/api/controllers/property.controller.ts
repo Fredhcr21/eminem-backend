@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { handleError, logger } from '../../core';
 import { PropertyService } from '../services';
 import { Helpers } from '../../helpers';
-import HttpStatus from 'http-status-codes';
+import * as HttpStatus from 'http-status-codes';
 
 export const find = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
