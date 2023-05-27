@@ -6,8 +6,8 @@ import authRoutes from './routes/auth.routes';
 
 export default function routes(app: Application): void {
   // Public
+  app.use('/auth', authRoutes);
   app.use('/property', propertyRoutes);
   // Private : Token needed
   app.use('/user', isLoggedIn, UserRoutes);
-  app.use('/auth', isLoggedIn, authRoutes);
 }
