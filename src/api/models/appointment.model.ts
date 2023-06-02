@@ -14,7 +14,7 @@ export interface AppointmentModel extends mongoose.Document {
   eventCanceled?: boolean;
   eventCanceledAt?: string;
   eventCancelerName?: string;
-  eventCancelelReason?: string;
+  eventCancelReason?: string;
   eventCreatedAt?: string;
   eventEndTime?: string;
   eventEndTimePretty?: string;

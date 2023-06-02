@@ -3,3 +3,4 @@ export * from './common.types';
 export * from './user.types';
 export * from './property.types';
 export * from './appointment.types';
+export * from './calendly.types';
