@@ -5,3 +5,4 @@ export * as AuthService from './auth';
 export * as HealthService from './health.service';
 export * as CalendlyService from './calendly.service';
 export * as AppointmentService from './appointment.service';
+export * as RoleService from './role.service';

@@ -7,6 +7,7 @@ import HealthRoutes from './routes/health.routes';
 import HooksRoutes from './routes/hooks.routes';
 import AppointmentRoutes from './routes/appointment.routes';
 import AccountRoutes from './routes/account.routes';
+import RoleRoutes from './routes/role.routes';
 
 export default function routes(app: Application): void {
   // Public : No Token needed
@@ -18,4 +19,5 @@ export default function routes(app: Application): void {
   app.use('/account', isLoggedIn, AccountRoutes);
   app.use('/user', isLoggedIn, UserRoutes);
   app.use('/appointment', isLoggedIn, AppointmentRoutes);
+  app.use('/role', isLoggedIn, RoleRoutes);
 }
