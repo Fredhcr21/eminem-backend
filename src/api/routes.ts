@@ -8,6 +8,7 @@ import HooksRoutes from './routes/hooks.routes';
 import AppointmentRoutes from './routes/appointment.routes';
 import AccountRoutes from './routes/account.routes';
 import RoleRoutes from './routes/role.routes';
+import PermissionRoutes from './routes/permission.routes';
 
 export default function routes(app: Application): void {
   // Public : No Token needed
@@ -20,4 +21,5 @@ export default function routes(app: Application): void {
   app.use('/user', isLoggedIn, UserRoutes);
   app.use('/appointment', isLoggedIn, AppointmentRoutes);
   app.use('/role', isLoggedIn, RoleRoutes);
+  app.use('/permission', isLoggedIn, PermissionRoutes);
 }

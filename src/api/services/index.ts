@@ -6,3 +6,4 @@ export * as HealthService from './health.service';
 export * as CalendlyService from './calendly.service';
 export * as AppointmentService from './appointment.service';
 export * as RoleService from './role.service';
+export * as PermissionService from './permissions.service';
