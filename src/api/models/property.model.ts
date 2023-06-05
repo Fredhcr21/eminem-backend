@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { GeoLocation } from '../types';
+import { GeoLocation, GeoLocationMongoDB } from '../types';
 import { PropertyStatus, PropertyType } from '../types';
 
 export interface PropertyModel extends mongoose.Document {
@@ -31,7 +31,7 @@ export interface PropertyModel extends mongoose.Document {
   street: string;
   type: PropertyType;
   yardArea: number;
-  geo: GeoLocation;
+  geo: GeoLocationMongoDB | Geolocation;
   fullAddress: string;
 }
 

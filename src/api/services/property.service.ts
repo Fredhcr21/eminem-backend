@@ -1,5 +1,14 @@
 import { Property, PropertyModel } from '../models';
-import { PaginationQuery, ResponsePagination } from '../types';
+import { GeoLocation, GeoLocationMongoDB, PaginationQuery, ResponsePagination } from '../types';
+
+const formatLocation = (property: PropertyModel): GeoLocationMongoDB => {
+  const location: GeoLocationMongoDB = {
+    type: 'Point',
+    // @ts-ignore
+    coordinates: [(property.geo as GeoLocation).longitude, (property.geo as GeoLocation).latitude],
+  };
+  return location;
+};
 
 export const find = async (paginationQuery: PaginationQuery): Promise<ResponsePagination<PropertyModel>> => {
   // Run the Query
@@ -25,8 +34,12 @@ export const getById = async (id: string): Promise<PropertyModel> => {
   return property;
 };
 
-export const create = async (propertyModel: PropertyModel): Promise<PropertyModel> => {
-  const newProperty = await new Property(propertyModel).save();
+export const create = async (property: PropertyModel): Promise<PropertyModel> => {
+  // @ts-ignore
+  if (property.geo && (property.geo as GeoLocation).latitude && (property.geo as GeoLocation).longitude) {
+    property.geo = formatLocation(property);
+  }
+  const newProperty = await new Property(property).save();
   return newProperty;
 };
 
