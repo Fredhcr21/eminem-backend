@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { GeoLocation, GeoLocationMongoDB } from '../types';
 import { PropertyStatus, PropertyType } from '../types';
+import { LocationSchema } from './location.schema';
 
 export interface PropertyModel extends mongoose.Document {
   title: string;
@@ -31,7 +32,7 @@ export interface PropertyModel extends mongoose.Document {
   street: string;
   type: PropertyType;
   yardArea: number;
-  geo: GeoLocationMongoDB | Geolocation;
+  geo: GeoLocationMongoDB | GeoLocation;
   fullAddress: string;
 }
 
@@ -151,8 +152,7 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     geo: {
-      type: Number,
-      required: true,
+      type: LocationSchema,
     },
     fullAddress: {
       type: String,
@@ -161,8 +161,15 @@ const propertySchema = new mongoose.Schema(
   },
   {
     toObject: { virtuals: true },
-    toJSON: { virtuals: true },
+    toJSON: {
+      transform: (_doc, { location, ...ret }) => ({
+        ...ret,
+        location: { latitude: location?.coordinates[1], longitude: location?.coordinates[0] },
+      }),
+      virtuals: true,
+    },
   },
 );
+propertySchema.index({ location: '2dsphere' });
 
 export const Property = mongoose.model<PropertyModel>('Property', propertySchema);

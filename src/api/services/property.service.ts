@@ -4,7 +4,6 @@ import { GeoLocation, GeoLocationMongoDB, PaginationQuery, ResponsePagination } 
 const formatLocation = (property: PropertyModel): GeoLocationMongoDB => {
   const location: GeoLocationMongoDB = {
     type: 'Point',
-    // @ts-ignore
     coordinates: [(property.geo as GeoLocation).longitude, (property.geo as GeoLocation).latitude],
   };
   return location;
@@ -35,7 +34,6 @@ export const getById = async (id: string): Promise<PropertyModel> => {
 };
 
 export const create = async (property: PropertyModel): Promise<PropertyModel> => {
-  // @ts-ignore
   if (property.geo && (property.geo as GeoLocation).latitude && (property.geo as GeoLocation).longitude) {
     property.geo = formatLocation(property);
   }

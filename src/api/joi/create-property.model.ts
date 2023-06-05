@@ -1,9 +1,9 @@
 import Joi from 'joi';
 
 export const createPropertyModel = Joi.object({
-  title: Joi.string().alphanum().min(5).max(100).required(),
+  title: Joi.string().min(5).max(100).required(),
 
-  description: Joi.string().alphanum().min(10).max(1000).required(),
+  description: Joi.string().min(10).max(1000).required(),
 
   airConditioning: Joi.boolean().required(),
 
@@ -29,7 +29,7 @@ export const createPropertyModel = Joi.object({
 
   houseArea: Joi.number().required(),
 
-  internalNumber: Joi.number().required(),
+  internalNumber: Joi.string().required(),
 
   keywords: Joi.array().items(Joi.string()).min(1).required(),
 
