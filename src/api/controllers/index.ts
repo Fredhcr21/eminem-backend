@@ -7,3 +7,4 @@ export * as AppointmentController from './appointment.controller';
 export * as AccountController from './account.controller';
 export * as RoleController from './role.controller';
 export * as PermissionController from './permission.controller';
+export * as CarController from './car.controller'
